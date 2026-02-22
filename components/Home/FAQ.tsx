@@ -11,7 +11,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="py-20">
+    <div className="pt-20 pb-10">
       <h2 className="text-[24px] text-center font-bold mb-4">
         Frequent Asked Questions
       </h2>
@@ -25,7 +25,7 @@ export default function FAQ() {
               >
                 {showFAQAnswer === faq.id ? "-" : "+"}
               </span>
-              <h4 className="text-[16px] font-semibold">{faq.question}</h4>
+              <h4 className="text-[16px] font-regular">{faq.question}</h4>
             </div>
             <p
               className={`transition-all duration-300 ${

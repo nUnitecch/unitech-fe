@@ -1,35 +1,36 @@
 import Image from "next/image";
-import Link from "next/link";
+import LinkButton from "../LinkButton";
+import Container from "../Container";
 
 export default function Hero() {
   return (
-    <section>
+    <Container>
       <div className="py-4">
-        <div className="min-w-75.5 h-70 overflow-hidden relative" role="banner">
+        <div className="min-w-75.5 h-70 overflow-hidden relative">
           <Image
             src="/images/heroImg.jpg"
             alt="hero image"
             fill
             className="object-cover object-center"
+            aria-label="hero image"
           />
         </div>
       </div>
-      <div className="text-center text-primary-text px-4">
+      <div className="text-center text-foreground px-4">
         <div>
-          <h1 className="text-[28px] text-primary-text font-bold min-w-75.5 mb-2">
+          <h1 className="text-[28px] text-foreground font-bold min-w-75.5 mb-2">
             Your Ultimate LASU Campus Companion
           </h1>
           <p className="text-[16px] my-2">
             The official app for Lagos State University(LASU), designed to
             simplify your student life and keep you connected.
           </p>
-          <Link
+          <LinkButton
             href="auth/signup"
-            aria-label="Sign up"
-            className="inline-block btn-primary rounded-[5.11px] px-[12.78px] py-[7.67px] my-4"
+            className="inline-block bg-logo text-white my-4"
           >
             Sign up
-          </Link>
+          </LinkButton>
         </div>
         <div className="mt-2">
           <h2 className="text-[22px] font-bold">
@@ -41,6 +42,6 @@ export default function Hero() {
           </p>
         </div>
       </div>
-    </section>
+    </Container>
   );
 }

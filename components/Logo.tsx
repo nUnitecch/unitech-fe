@@ -16,7 +16,7 @@ export default function Logo() {
           className="object-contain"
         />
       </div>
-      <span className="text-logo-title text-[12.79px] ml-2 font-semibold">
+      <span className="text-logo text-[12.79px] ml-2 font-semibold">
         My Lasu App
       </span>
     </Link>
