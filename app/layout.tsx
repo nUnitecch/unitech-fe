@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-// import { Roboto } from "next/font/google";
-import { Geist } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider";
 import { Toaster } from "sonner";
 
-const geist = Geist({
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
 });
-
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["400"],
-//   display: "swap",
-// });
 
 export const metadata: Metadata = {
   title: "Lasu Recommendation App",
@@ -28,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geist.className}>
+    <html lang="en" className={`${poppins.className} scroll-smooth`}>
       <body>
         <Provider>{children}</Provider>
         <Toaster position="top-center" richColors />

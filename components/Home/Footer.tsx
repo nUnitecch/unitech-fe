@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../Logo";
 import Container from "../Container";
+import LinkButton from "../LinkButton";
 
 export default function Footer() {
   return (
-    <footer className="text-background bg-logo/80">
+    <footer className="bg-logo/80">
       <Container>
         <div className="min-w-50 h-50 relative flex items-center justify-center">
           <div className="footer-overlay"></div>
@@ -22,12 +23,15 @@ export default function Footer() {
               you stay organized, informed, and ready for anything LASU throws
               your way.
             </p>
-            <button className="bg-background px-4 py-1 rounded text-primary-text">
+            <LinkButton
+              href="/auth/signup"
+              className="bg-background text-foreground"
+            >
               Sign up today!
-            </button>
+            </LinkButton>
           </div>
         </div>
-        <div className="bg-footer p-4">
+        <div className="text-white p-4">
           <div className="w-45 mb-2">
             <Logo />
           </div>
@@ -51,13 +55,13 @@ export default function Footer() {
           </ul>
           <div>
             <p>Get to know when other features are open.</p>
-            <div className="my-4 flex flex-wrap gap-2">
+            <div className="my-4 flex flex-col md:flex-row flex-wrap gap-2">
               <input
                 type="text"
                 placeholder="Lorem is a demo text"
-                className="bg-background p-2 mr-4 rounded"
+                className="bg-background p-2 rounded"
               />
-              <button className="rounded px-4 bg-logo-title">Subscribe</button>
+              <button className="rounded px-4 py-2 bg-logo">Subscribe</button>
             </div>
           </div>
         </div>
