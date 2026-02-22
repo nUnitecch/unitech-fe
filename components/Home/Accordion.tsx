@@ -20,7 +20,9 @@ export default function AccordionSection() {
           className="border-b border-foreground/10"
         >
           <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent className="leading-relaxed">{item.answer}</AccordionContent>
+          <AccordionContent className="leading-relaxed">
+            {item.answer}
+          </AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>

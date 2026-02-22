@@ -31,7 +31,7 @@ export default function Footer() {
             </LinkButton>
           </div>
         </div>
-        <div className="text-white p-4">
+        <div className="text-white py-10 px-4">
           <div className="w-45 mb-2">
             <Logo />
           </div>
