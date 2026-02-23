@@ -6,7 +6,7 @@ import LinkButton from "../LinkButton";
 
 export default function Footer() {
   return (
-    <footer className="bg-logo/80">
+    <footer className="bg-logo">
       <Container>
         <div className="min-w-50 h-50 relative flex items-center justify-center">
           <div className="footer-overlay"></div>
@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <LinkButton
               href="/auth/signup"
-              className="bg-background text-foreground"
+              className="bg-background text-foreground text-sm"
             >
               Sign up today!
             </LinkButton>
@@ -37,21 +37,13 @@ export default function Footer() {
           </div>
           <p className="mb-5">Your Ultimate Campus Companion.</p>
           <ul className="flex flex-col mb-7">
-            <li>
-              <Link href="">About</Link>
-            </li>
-            <li>
-              <Link href="">Careers</Link>
-            </li>
-            <li>
-              <Link href="">Hubs</Link>
-            </li>
-            <li>
-              <Link href="">Customer Care</Link>
-            </li>
-            <li>
-              <Link href="">Services</Link>
-            </li>
+            {["About", "Careers", "Hubs", "Customer Care", "Services"].map(
+              (link, index) => (
+                <li key={index}>
+                  <Link href="">{link}</Link>
+                </li>
+              ),
+            )}
           </ul>
           <div>
             <p>Get to know when other features are open.</p>
@@ -61,7 +53,9 @@ export default function Footer() {
                 placeholder="Lorem is a demo text"
                 className="bg-background p-2 rounded"
               />
-              <button className="rounded px-4 py-2 bg-logo">Subscribe</button>
+              <button className="rounded px-4 py-2 bg-foreground">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>

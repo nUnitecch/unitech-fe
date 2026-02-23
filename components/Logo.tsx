@@ -11,9 +11,9 @@ export default function Logo() {
         <Image
           src="/icons/logo.png"
           alt="logo icon"
-          
           fill
           className="object-contain"
+          sizes="300px"
         />
       </div>
       <span className="text-logo text-[12.79px] ml-2 font-semibold">
