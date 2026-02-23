@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FadeFeatureInView } from "../FadeInView";
 
 type DetailsType = {
   details: {
@@ -10,7 +11,7 @@ type DetailsType = {
 
 export default function FeatureCard({ details }: DetailsType) {
   return (
-    <div className="flex flex-col gap-y-[38.63px] border-[1.42px] border-border min-w-[169.26px] py-[15.24px] px-[15.38px] rounded-tl-[15.95px] rounded-br-[15.95px]">
+    <FadeFeatureInView className="flex flex-col gap-y-[38.63px] border-[1.42px] border-border min-w-[169.26px] py-[15.24px] px-[15.38px] rounded-tl-[15.95px] rounded-br-[15.95px]">
       <div className="self-end">
         <div className="min-w-[40.06px] h-[40.06px] rounded-full p-[4.96px] bg-logo flex items-center justify-center">
           <Image
@@ -29,6 +30,6 @@ export default function FeatureCard({ details }: DetailsType) {
         </h1>
         <p className="text-[16px]">{details.desc}</p>
       </div>
-    </div>
+    </FadeFeatureInView>
   );
 }

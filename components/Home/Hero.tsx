@@ -1,12 +1,13 @@
 import Image from "next/image";
 import LinkButton from "../LinkButton";
 import Container from "../Container";
+import FadeInView from "../FadeInView";
 
 export default function Hero() {
   return (
     <section className="bg-background">
       <Container className="flex flex-col md:flex-row-reverse md:items-center">
-        <div className="py-4 px-4 mb-4 w-full">
+        <FadeInView className="py-4 px-4 mb-4 w-full">
           <div className="min-w-70 h-70 overflow-hidden relative md:h-90 rounded-xl">
             <Image
               src="/images/heroImg.jpg"
@@ -18,8 +19,8 @@ export default function Hero() {
               sizes="500px"
             />
           </div>
-        </div>
-        <div className="text-center text-foreground px-4 w-full">
+        </FadeInView>
+        <FadeInView className="text-center text-foreground px-4 w-full">
           <div>
             <h1 className="text-2xl text-foreground font-bold mb-4">
               Your Ultimate LASU <br /> Campus Companion
@@ -44,7 +45,7 @@ export default function Hero() {
               journey and campus experience.
             </p>
           </div>
-        </div>
+        </FadeInView>
       </Container>
     </section>
   );
