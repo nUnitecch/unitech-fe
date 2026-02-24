@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import FormLabel from "./FormLabel";
 
 interface FormSelectProps {
   placeholder: string;
@@ -37,13 +38,7 @@ export default function FormSelect({
 
   return (
     <div>
-      <label
-        htmlFor={name}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        {label}
-        {required && <span className="text-destructive ml-1">*</span>}
-      </label>
+      <FormLabel name={name} label={label} required={required} />
       <Controller
         name={name}
         control={control}
@@ -54,7 +49,7 @@ export default function FormSelect({
               id={name}
               aria-invalid={!!error}
               aria-describedby={error ? `${name}-error` : undefined}
-              className={`w-full h-11 rounded transition-all
+              className={`w-full h-12 py-5 rounded transition-all
                 ${
                   error
                     ? "border-red-500 bg-red-50/50 focus:ring-red-500"

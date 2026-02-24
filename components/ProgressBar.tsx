@@ -9,7 +9,7 @@ export default function ProgressBar({ currentStep }: { currentStep: number }) {
   const currentDesc = stepsDescriptions[currentStep - 1] || "Complete";
 
   return (
-    <div className="w-full max-w-md mx-auto mb-10">
+    <div className="w-full max-w-md mx-auto">
       {/* Header Info */}
       <div className="flex justify-between items-end mb-4">
         <div className="text-left">

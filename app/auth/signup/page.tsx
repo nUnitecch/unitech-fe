@@ -87,7 +87,7 @@ export default function SignupPage() {
           </AnimatePresence>
 
           {/* ACTIONS */}
-          <div className="flex items-center justify-between gap-4 border-t border-border pt-8">
+          <div className="flex items-center justify-between gap-4 border-t border-border/20 pt-8">
             {currentStep > 1 && (
               <Button
                 type="button"

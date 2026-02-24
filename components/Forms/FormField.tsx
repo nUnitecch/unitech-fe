@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
+import FormLabel from "./FormLabel";
 
 interface FormFieldProps {
   name: string;
@@ -26,13 +27,7 @@ export default function FormField({
 
   return (
     <div className="inputField">
-      <label
-        htmlFor={name}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        {label}
-        {required && <span className="text-destructive ml-1">*</span>}
-      </label>
+      <FormLabel name={name} label={label} required={required} />
       {type === "textarea" ? (
         <textarea
           id={name}
@@ -49,7 +44,7 @@ export default function FormField({
           type={type || "text"}
           id={name}
           placeholder={placeholder}
-          className={`border w-full h-11 rounded transition-all px-2 ${
+          className={`border w-full h-13 rounded transition-all px-2 ${
             error
               ? "border-red-500 bg-red-50 focus:ring-red-500"
               : "border-border focus:ring-2 focus:ring-logo/20 focus:border-logo"
