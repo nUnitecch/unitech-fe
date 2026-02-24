@@ -144,13 +144,6 @@
   .btn-primary {
     @apply bg-background text-foreground;
   }
-  .about-card:nth-child(even) {
-    @apply flex-row-reverse;
-  }
-
-  .about-card:nth-child(even) .card-desc {
-    @apply bg-background text-foreground;
-  }
 
   .footer-overlay {
     @apply absolute bg-black/90 z-30 inset-0 opacity-40;

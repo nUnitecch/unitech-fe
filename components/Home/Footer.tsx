@@ -3,6 +3,7 @@ import Link from "next/link";
 import Logo from "../Logo";
 import Container from "../Container";
 import LinkButton from "../LinkButton";
+import { FadeFeatureInView } from "../FadeInView";
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
             className="object-cover"
             sizes="500px"
           />
-          <div className="w-[80%] relative z-50 text-center">
+          <FadeFeatureInView className="w-[80%] relative z-50 text-center">
             <p className="text-background mb-4 text-[12px]">
               Whatever your campus needs, My LASU App’s got you covered, helping
               you stay organized, informed, and ready for anything LASU throws
@@ -29,36 +30,40 @@ export default function Footer() {
             >
               Sign up today!
             </LinkButton>
-          </div>
+          </FadeFeatureInView>
         </div>
-        <div className="text-white py-10 px-4">
-          <div className="w-45 mb-2">
-            <Logo />
+        <FadeFeatureInView className="text-white py-10 px-4 md:flex md:gap-5">
+          <div className="w-full">
+            <div className="w-45 mb-2">
+              <Logo />
+            </div>
+            <p className="mb-5">Your Ultimate Campus Companion.</p>
+            <ul className="flex flex-col mb-7">
+              {["About", "Careers", "Hubs", "Customer Care", "Services"].map(
+                (link, index) => (
+                  <li key={index}>
+                    <Link href="">{link}</Link>
+                  </li>
+                ),
+              )}
+            </ul>
           </div>
-          <p className="mb-5">Your Ultimate Campus Companion.</p>
-          <ul className="flex flex-col mb-7">
-            {["About", "Careers", "Hubs", "Customer Care", "Services"].map(
-              (link, index) => (
-                <li key={index}>
-                  <Link href="">{link}</Link>
-                </li>
-              ),
-            )}
-          </ul>
-          <div>
-            <p>Get to know when other features are open.</p>
-            <div className="my-4 flex flex-col md:flex-row flex-wrap gap-2">
+          <div className="md:px-4">
+            <p className="lg:text-nowrap">
+              Get to know when other features are open.
+            </p>
+            <div className="my-4 flex flex-col md:flex-row flex-wrap gap-2 md:flex-nowrap">
               <input
                 type="text"
                 placeholder="Lorem is a demo text"
-                className="bg-background p-2 rounded"
+                className="bg-background p-2 rounded outline-none"
               />
               <button className="rounded px-4 py-2 bg-foreground">
                 Subscribe
               </button>
             </div>
           </div>
-        </div>
+        </FadeFeatureInView>
       </Container>
     </footer>
   );

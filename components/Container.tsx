@@ -11,8 +11,8 @@ export default function Container({
   ...props
 }: ContainerProps) {
   return (
-    <section className={`xl:max-w-360 xl:mx-auto ${className}`} {...props}>
+    <div className={`xl:max-w-360 xl:mx-auto ${className}`} {...props}>
       {children}
-    </section>
+    </div>
   );
 }

@@ -5,8 +5,19 @@ import { HTMLMotionProps, motion, useInView } from "framer-motion";
 
 interface FadeInViewType extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
+
+const fadeInVariants = {
+  hidden: {
+    y: 20,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 export default function FadeInView({
   children,
@@ -15,17 +26,6 @@ export default function FadeInView({
 }: FadeInViewType) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-
-  const fadeInVariants = {
-    hidden: {
-      y: 20,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
 
   return (
     <motion.div
@@ -44,7 +44,11 @@ export default function FadeInView({
 
 interface FadeFeatureInView extends FadeInViewType {}
 
-export function FadeFeatureInView({ children, className, ...props }: FadeFeatureInView) {
+export function FadeFeatureInView({
+  children,
+  className,
+  ...props
+}: FadeFeatureInView) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   return (
@@ -52,7 +56,7 @@ export function FadeFeatureInView({ children, className, ...props }: FadeFeature
       ref={ref}
       initial={{
         opacity: 0,
-        y: 20,
+        y: 30,
       }}
       animate={
         inView && {
