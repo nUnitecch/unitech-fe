@@ -145,6 +145,10 @@
     @apply bg-background text-foreground;
   }
 
+  .error {
+    @apply text-red-500 text-xs;
+  }
+
   .footer-overlay {
     @apply absolute bg-black/90 z-30 inset-0 opacity-40;
   }

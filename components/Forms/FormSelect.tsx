@@ -37,22 +37,29 @@ export default function FormSelect({
 
   return (
     <div>
-      <label htmlFor={name} className="block mb-1">
+      <label
+        htmlFor={name}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
         {label}
-        {required && " *"}
+        {required && <span className="text-destructive ml-1">*</span>}
       </label>
       <Controller
         name={name}
         control={control}
-        rules={{ required: required ? "This field is required" : false }}
+        rules={{ required: required ? `${name} required!` : false }}
         render={({ field }) => (
-          <Select onValueChange={field.onChange} value={field.value}>
+          <Select onValueChange={field.onChange} value={field.value ?? ""}>
             <SelectTrigger
-              className={`w-full ${
-                error
-                  ? "border-red-500 bg-red-50 focus:ring-red-500"
-                  : "border-border focus:border-primary"
-              }`}
+              id={name}
+              aria-invalid={!!error}
+              aria-describedby={error ? `${name}-error` : undefined}
+              className={`w-full h-11 rounded transition-all
+                ${
+                  error
+                    ? "border-red-500 bg-red-50/50 focus:ring-red-500"
+                    : "border-border focus:ring-2 focus:ring-logo/20 focus:border-logo"
+                }`}
             >
               <SelectValue placeholder={placeholder} />
             </SelectTrigger>

@@ -5,7 +5,7 @@ import { useFormContext } from "react-hook-form";
 interface FormFieldProps {
   name: string;
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   label: string;
   required?: boolean;
 }
@@ -26,18 +26,21 @@ export default function FormField({
 
   return (
     <div className="inputField">
-      <label htmlFor={name} className="block mb-1">
+      <label
+        htmlFor={name}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
         {label}
-        {required && " *"}
+        {required && <span className="text-destructive ml-1">*</span>}
       </label>
       {type === "textarea" ? (
         <textarea
           id={name}
           placeholder={placeholder}
-          className={`border w-full rounded p-2 min-h-20  ${
+          className={`border w-full rounded p-2 min-h-20 transition-all ${
             error
               ? "border-red-500 bg-red-50 focus:ring-red-500"
-              : "border-border focus:border-primary"
+              : "border-border focus:ring-2 focus:ring-logo/20 focus:border-logo"
           }`}
           {...register(name, { required })}
         ></textarea>
@@ -46,10 +49,10 @@ export default function FormField({
           type={type || "text"}
           id={name}
           placeholder={placeholder}
-          className={`border w-full h-10 rounded px-2 ${
+          className={`border w-full h-11 rounded transition-all px-2 ${
             error
               ? "border-red-500 bg-red-50 focus:ring-red-500"
-              : "border-border focus:border-primary"
+              : "border-border focus:ring-2 focus:ring-logo/20 focus:border-logo"
           }`}
           {...register(name, { required })}
         />

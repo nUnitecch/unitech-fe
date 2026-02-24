@@ -173,7 +173,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
           <p>© {currentYear} My LASU App. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-white">
+            <Link href="#" className="hover:text-white">
               Privacy Policy
             </Link>
             <Link href="#" className="hover:text-white">
