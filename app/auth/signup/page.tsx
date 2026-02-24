@@ -2,246 +2,131 @@
 
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
-import FormField from "@/components/Forms/FormField";
-import { Button } from "@/components/ui/button";
-import FormSelect from "@/components/Forms/FormSelect";
 import { FormProvider, useForm } from "react-hook-form";
+import { motion, AnimatePresence } from "framer-motion";
+// Components
+import { Button } from "@/components/ui/button";
+import ProgressBar from "@/components/ProgressBar";
+import PersonalForm from "./PersonalForm";
+import AcademicForm from "./AcademicForm";
+import ContactForm from "./ContactForm";
+import SecurityForm from "./SecurityForm";
+// Data & Hooks
 import { mapSignupToApi } from "@/lib/api/mapper";
 import { useStudentRegistration } from "@/hooks/useAuth";
-import {
-  campusOptions,
-  currentStepFields,
-  departmentOptions,
-  facultyOptions,
-  genderOptions,
-  levelOptions,
-} from "@/constants/signupFields";
-import ProgressBar from "@/components/ProgressBar";
 import { SignupFormData, signupSchema } from "@/lib/schemas/authSchema";
+import { currentStepFields } from "@/constants/signupFields";
 
 export default function SignupPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const { isPending, register } = useStudentRegistration();
+
   const methods = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     shouldUnregister: false,
-    defaultValues: {
-      fullname: "",
-      email: "",
-      gender: "",
-      matricNo: "",
-      campus: "",
-      faculty: "",
-      department: "",
-      level: "",
-      whatsappNumber: "",
-      callingNumber: "",
-      address: "",
-      guardianName: "",
-      guardianNumber: "",
-      username: "",
-      password: "",
-      confirmPassword: "",
-    },
     mode: "onChange",
   });
 
   const { handleSubmit, trigger } = methods;
 
-  const next = async () => {
+  const handleNext = async () => {
     const fields =
       currentStepFields[currentStep as keyof typeof currentStepFields];
-    const isValid = await trigger(fields);
+    const isValid = await trigger(fields as any);
     if (isValid) setCurrentStep((prev) => Math.min(prev + 1, 4));
   };
 
-  const previous = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
-
-  const { isPending, register } = useStudentRegistration();
+  const handlePrevious = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
 
   const onSubmit = (data: SignupFormData) => {
+    console.log("data before map", data);
     const apiPayload = mapSignupToApi(data);
+    console.log("data after mapped", apiPayload);
     register(apiPayload);
   };
 
   return (
-    <div className="w-[95%] mx-auto">
-      <div className="text-center">
-        <div className="flex justify-center mb-5">
-          <div className="border size-15 rounded-full p-2 btn-primary">
-            <GraduationCap className="size-full" />
-          </div>
-        </div>
-        <h1 className="text-2xl font-semibold my-3">Create Account</h1>
+    <div className="py-10 px-4 sm:px-6 flex flex-col justify-center">
+      {/* Header Section */}
+      <div className="text-center mb-10">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="inline-flex items-center justify-center size-16 rounded-3xl bg-logo text-white shadow-lg shadow-logo/20 mb-6"
+        >
+          <GraduationCap className="size-8" />
+        </motion.div>
+        <h1 className="text-3xl font-black tracking-tight text-foreground mb-2">
+          Create Account
+        </h1>
+        <p className="text-muted-foreground mb-8">
+          Join the LASU digital community
+        </p>
+
         <ProgressBar currentStep={currentStep} />
       </div>
+      {/* Form Section */}
       <FormProvider {...methods}>
-        <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
-          <>
-            {currentStep === 1 && (
-              <div className="fields flex flex-col gap-5 mb-5">
-                <FormField
-                  label="Fullname"
-                  type="text"
-                  name="fullname"
-                  placeholder="John Doe"
-                  required
-                />
-                <FormField
-                  label="Email"
-                  type="email"
-                  name="email"
-                  placeholder="johndoe@example.com"
-                  required
-                />
-                <FormSelect
-                  placeholder="Select your gender"
-                  label="Gender"
-                  groupLabel="Genders"
-                  name="gender"
-                  options={genderOptions}
-                  required
-                />
-              </div>
-            )}
-            {currentStep === 2 && (
-              <div className="fields flex flex-col gap-3 mb-5">
-                <FormField
-                  label="Matric Number"
-                  type="number"
-                  name="matricNo"
-                  placeholder="e.g 2206732"
-                  required
-                />
-                <FormSelect
-                  label="Campus"
-                  groupLabel="Campuses"
-                  name="campus"
-                  placeholder="Select Campus"
-                  options={campusOptions}
-                  required
-                />
-                <FormSelect
-                  label="Faculty"
-                  groupLabel="Faculties"
-                  name="faculty"
-                  placeholder="Select Faculty"
-                  options={facultyOptions}
-                  required
-                />
-                <FormSelect
-                  label="Department"
-                  groupLabel="Departments"
-                  name="department"
-                  placeholder="Select Department"
-                  options={departmentOptions}
-                  required
-                />
-                <FormSelect
-                  label="Level"
-                  groupLabel="Levels"
-                  name="level"
-                  placeholder="Select Level"
-                  options={levelOptions}
-                  required
-                />
-              </div>
-            )}
-            {currentStep === 3 && (
-              <div className="fields flex flex-col gap-3 mb-5">
-                <FormField
-                  label="WhatsApp Number"
-                  name="whatsappNumber"
-                  type="tel"
-                  placeholder="+234 xxx xxx xxxx"
-                />
-                <FormField
-                  name="callingNumber"
-                  type="tel"
-                  label="Calling Number"
-                  placeholder="+234 xxx xxx xxxx"
-                />
-                <FormField
-                  name="address"
-                  type="textarea"
-                  label="Address"
-                  placeholder="Enter your address"
-                  required
-                />
-                <FormField
-                  type="text"
-                  name="guardianName"
-                  label="Guardian Name"
-                  placeholder="Guardian's name"
-                />
-                <FormField
-                  name="guardianNumber"
-                  type="tel"
-                  label="Guardian Number"
-                  placeholder="+234 xxx xxx xxxx"
-                />
-              </div>
-            )}
-            {currentStep === 4 && (
-              <div className="fields flex flex-col gap-3 mb-5">
-                <FormField
-                  name="username"
-                  type="text"
-                  label="Username"
-                  placeholder="Choose a Username"
-                  required
-                />
-                <FormField
-                  name="password"
-                  type="password"
-                  label="Password"
-                  placeholder="Create a strong password"
-                  required
-                />
-                <FormField
-                  name="confirmPassword"
-                  type="password"
-                  label="Confirm Password"
-                  placeholder="Re-type your password"
-                  required
-                />
-              </div>
-            )}
-          </>
-          <div className="flex w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -20, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6 mb-10"
+            >
+              {currentStep === 1 && <PersonalForm />}
+              {currentStep === 2 && <AcademicForm />}
+              {currentStep === 3 && <ContactForm />}
+              {currentStep === 4 && <SecurityForm />}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* ACTIONS */}
+          <div className="flex items-center justify-between gap-4 border-t border-border pt-8">
             {currentStep > 1 && (
               <Button
                 type="button"
-                className="btn-secondary"
-                onClick={previous}
+                variant="outline"
+                onClick={handlePrevious}
+                className="flex-1 h-11 rounded-xl"
               >
-                Prev
+                <ArrowLeft className="mr-2 size-4" /> Back
               </Button>
             )}
-            <Button
-              type="button"
-              className={`btn-primary ml-auto ${
-                currentStep < 4 ? "block" : "hidden"
-              }`}
-              onClick={next}
-            >
-              Next
-            </Button>
-            <Button
-              type="submit"
-              className={`btn-primary ml-auto ${
-                currentStep !== 4 ? "hidden" : "block"
-              }`}
-              disabled={isPending}
-            >
-              {isPending ? "Create..." : "Submit"}
-            </Button>
+
+            {currentStep < 4 ? (
+              <Button
+                type="button"
+                onClick={handleNext}
+                className="flex-1 h-11 rounded-xl bg-logo hover:bg-logo/90 transition-all"
+              >
+                Continue <ArrowRight className="ml-2 size-4" />
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="flex-1 h-11 rounded-xl bg-logo"
+              >
+                {isPending ? <Loader2 className="animate-spin mr-2" /> : null}
+                {isPending ? "Creating..." : "Submit"}
+              </Button>
+            )}
           </div>
-          <p className="text-center mt-6.5">
-            Already have an account? <Link href="/auth/signin">Sign in</Link>
+
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Already have an account?{" "}
+            <Link
+              href="/auth/signin"
+              className="text-logo font-bold hover:underline"
+            >
+              Sign in
+            </Link>
           </p>
         </form>
       </FormProvider>

@@ -137,4 +137,9 @@ export const currentStepFields = {
   4: ["username", "password", "confirmPassword"],
 } as const;
 
-export const stepsDescriptions = ["P", "A", "C", "A"];
+export const stepsDescriptions = [
+  "Personal",
+  "Academic",
+  "Contact",
+  "Additional",
+];
