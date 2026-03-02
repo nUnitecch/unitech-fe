@@ -42,11 +42,7 @@ export default function SignupPage() {
 
   const onSubmit = (data: SignupFormData) => {
     const apiPayload = mapSignupToApi(data);
-    try {
-      register(apiPayload);
-    } catch (error) {
-      console.error("Register student mutation failed", error);
-    }
+    register(apiPayload);
   };
 
   return (

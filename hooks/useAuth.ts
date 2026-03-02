@@ -7,9 +7,10 @@ export const useStudentRegistration = () => {
   const router = useRouter();
   const { isPending, mutate: register } = useMutation({
     mutationFn: registerStudent,
-    onSuccess: () => {
+    onSuccess: (response, variables) => {
       toast.success("Account created successfully!");
-      router.push(`/auth/signin`);
+      const email = encodeURIComponent(variables.email);
+      router.push(`/auth/verify?email=${email}`);
     },
     onError: (error: any) => {
       toast.error(error.message || "Registration failed. Try again.");

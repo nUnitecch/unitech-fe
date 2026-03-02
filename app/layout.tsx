@@ -20,7 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.className} scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${poppins.className}`}
+      data-scroll-behavior="smooth"
+    >
       <body>
         <Provider>{children}</Provider>
         <Toaster position="top-center" richColors />

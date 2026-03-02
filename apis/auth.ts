@@ -56,4 +56,6 @@ async function loginStudent({ email, password }: StudentLoginData) {
   }
 }
 
+async function requestPasswordReset() {}
+
 export { registerStudent, loginStudent };
