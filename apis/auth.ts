@@ -17,17 +17,9 @@ async function registerStudent(
       },
     );
     return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error(
-        "Registration failed:",
-        error.response?.data || error.message,
-      );
-      throw new Error(error.response?.data?.message || "Registration failed");
-    } else {
-      console.error("Unexpected error:", error);
-      throw new Error("An unexpected error occurred");
-    }
+  } catch (error: any) {
+    const message = error.response?.data?.message || "Internal Server Error";
+    throw new Error(message);
   }
 }
 
@@ -39,20 +31,13 @@ async function loginStudent({ email, password }: StudentLoginData) {
       credentials,
       {
         withCredentials: true,
-        headers: { "Content-Type": "application/json" },
       },
     );
-    console.log("Login successful", response.data);
 
     return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("Login failed:", error.response?.data || error.message);
-      throw new Error(error.response?.data?.message || "Login failed");
-    } else {
-      console.error("Unexpected error:", error);
-      throw new Error("An unexpected error occurred");
-    }
+  } catch (error: any) {
+    const message = error.response?.data?.message || "Internal Server Error";
+    throw new Error(message);
   }
 }
 

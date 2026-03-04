@@ -26,8 +26,8 @@ export const useStudentLogin = () => {
   const { isPending, mutate: login } = useMutation({
     mutationFn: loginStudent,
     onSuccess: (data) => {
-      toast.success("Login successfully!");
-      router.push(`/dashboard/${data?.id}`);
+      toast.success(`Welcome back, ${data.student.firstName}!`);
+      router.push(`/dashboard/`);
     },
     onError: (error: any) => {
       toast.error(error.message || "Something went wrong");
