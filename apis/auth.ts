@@ -41,6 +41,18 @@ async function loginStudent({ email, password }: StudentLoginData) {
   }
 }
 
-async function requestPasswordReset() {}
+async function forgetPassword({ email }: { email: string }) {
+  try {
+    const response = await axios.post(
+      `${BASE_API}/api/v1/student/forget-password`,
+      email,
+      { withCredentials: true },
+    );
+    return response.data;
+  } catch (error: any) {
+     const message = error.response?.data?.message || "Internal Server Error";
+     throw new Error(message);
+  }
+}
 
 export { registerStudent, loginStudent };

@@ -3,19 +3,20 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import { KeyRound, ArrowLeft } from "lucide-react";
+import { KeyRound, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 // Shared Components
 import { Button } from "@/components/ui/button";
 import FormField from "@/components/Forms/FormField";
 
-export default function ForgotPasswordPage() {
+export default function ResetPasswordPage() {
   const [isSending, setIsSending] = useState(false);
 
   const methods = useForm({
     defaultValues: {
-      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -37,7 +38,7 @@ export default function ForgotPasswordPage() {
         </motion.div>
 
         <h1 className="text-3xl font-black tracking-tight text-foreground mb-2">
-          Forgotten Password?
+          Secure Your Account
         </h1>
         <p className="text-muted-foreground text-sm max-w-70 mx-auto">
           Reset your new password.
@@ -52,20 +53,37 @@ export default function ForgotPasswordPage() {
           >
             <AnimatePresence mode="wait">
               <motion.div
-                key="email-step"
+                key="reset-step"
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -10 }}
                 className="space-y-4"
               >
                 <FormField
-                  name="email"
-                  label="Student Email"
-                  placeholder="johndoe@example.com"
+                  name="password"
+                  type="password"
+                  label="New Password"
+                  placeholder="••••••••"
                   required
                 />
-                <Button className="w-full h-12 bg-logo rounded-xl font-bold">
-                  {isSending ? "Sending Code..." : "Send Reset Code"}
+                <FormField
+                  name="confirmPassword"
+                  type="password"
+                  label="Confirm New Password"
+                  placeholder="••••••••"
+                  required
+                />
+                <Button
+                  className="w-full h-12 bg-logo rounded-xl font-bold"
+                  disabled={isSending}
+                >
+                  {isSending ? (
+                    <>
+                      <Loader2 className="animate-spin" /> Reset password ...
+                    </>
+                  ) : (
+                    "Reset Password"
+                  )}
                 </Button>
               </motion.div>
             </AnimatePresence>

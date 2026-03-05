@@ -61,7 +61,6 @@ export default function LoginPage() {
                 placeholder="johndoe@example.com"
                 required
               />
-
               <div className="relative">
                 <FormField
                   name="password"
@@ -69,12 +68,13 @@ export default function LoginPage() {
                   label="Password"
                   placeholder="••••••••"
                   required
+                  showPasswordIcon={true}
                 />
                 <Link
                   className="absolute top-0 right-0 text-logo text-xs font-bold hover:underline"
                   href="/auth/forgot-password"
                 >
-                  Forgot?
+                  Forgot password?
                 </Link>
               </div>
             </motion.div>
