@@ -14,7 +14,7 @@ import { useStudentLogin } from "@/hooks/useAuth";
 export default function LoginPage() {
   const methods = useForm<SigninFormData>({
     resolver: zodResolver(signinSchema),
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const { handleSubmit } = methods;

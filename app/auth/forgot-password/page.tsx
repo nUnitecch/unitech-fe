@@ -1,28 +1,27 @@
 "use client";
 
-import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { KeyRound, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-
 // Shared Components
 import { Button } from "@/components/ui/button";
 import FormField from "@/components/Forms/FormField";
+import { useForgotPassword } from "@/hooks/useAuth";
+import {
+  ForgotPasswordFormData,
+  forgotPasswordSchema,
+} from "@/lib/schemas/authSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function ForgotPasswordPage() {
-  const [isSending, setIsSending] = useState(false);
-
-  const methods = useForm({
-    defaultValues: {
-      email: "",
-    },
+  const methods = useForm<ForgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+    mode: "onSubmit",
   });
+  const { isPending, forgotPwd } = useForgotPassword();
 
-  const handleEmailSubmit = async (data: any) => {
-    setIsSending(true);
-    // Simulate API call
-  };
+  const handleEmailSubmit = async (data: any) => forgotPwd(data);
 
   return (
     <div className="flex flex-col justify-center min-h-[80vh] px-4">
@@ -65,7 +64,7 @@ export default function ForgotPasswordPage() {
                   required
                 />
                 <Button className="w-full h-12 bg-logo rounded-xl font-bold">
-                  {isSending ? "Sending Code..." : "Send Reset Code"}
+                  {isPending ? "Sending Code..." : "Send Reset Code"}
                 </Button>
               </motion.div>
             </AnimatePresence>

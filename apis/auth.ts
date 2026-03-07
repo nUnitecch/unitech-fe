@@ -18,7 +18,7 @@ async function registerStudent(
     );
     return response.data;
   } catch (error: any) {
-    const message = error.response?.data?.message || "Internal Server Error";
+    const message = error.response?.data?.message || "Error creating account";
     throw new Error(message);
   }
 }
@@ -36,7 +36,7 @@ async function loginStudent({ email, password }: StudentLoginData) {
 
     return response.data;
   } catch (error: any) {
-    const message = error.response?.data?.message || "Internal Server Error";
+    const message = error.response?.data?.message || "Login failed";
     throw new Error(message);
   }
 }
@@ -44,15 +44,37 @@ async function loginStudent({ email, password }: StudentLoginData) {
 async function forgetPassword({ email }: { email: string }) {
   try {
     const response = await axios.post(
-      `${BASE_API}/api/v1/student/forget-password`,
+      `${BASE_API}/api/v1/student/reset-request`,
       email,
       { withCredentials: true },
     );
     return response.data;
   } catch (error: any) {
-     const message = error.response?.data?.message || "Internal Server Error";
-     throw new Error(message);
+    const message = error.response?.data?.message || "Failed to send link";
+    throw new Error(message);
   }
 }
 
-export { registerStudent, loginStudent };
+async function resetPassword({
+  id,
+  token,
+  password,
+}: {
+  id: string | number;
+  token: string;
+  password: string;
+}) {
+  try {
+    const response = await axios.post(
+      `${BASE_API}/api/v1/student/reset?id=${id}token=${token}`,
+      { password },
+      { withCredentials: true },
+    );
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message || "Failed to reset password");
+  }
+}
+
+export { registerStudent, loginStudent, forgetPassword, resetPassword };

@@ -26,7 +26,7 @@ export default function SignupPage() {
   const methods = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     shouldUnregister: false,
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const { handleSubmit, trigger } = methods;
