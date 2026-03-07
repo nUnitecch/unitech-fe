@@ -44,7 +44,7 @@ async function loginStudent({ email, password }: StudentLoginData) {
 async function forgetPassword({ email }: { email: string }) {
   try {
     const response = await axios.post(
-      `${BASE_API}/api/v1/student/forget-password`,
+      `${BASE_API}/api/v1/student/reset-request`,
       email,
       { withCredentials: true },
     );
@@ -66,10 +66,12 @@ async function resetPassword({
 }) {
   try {
     const response = await axios.post(
-      `${BASE_API}/api/v1/student/reset-password`,
-      { id, token, password },
+      `${BASE_API}/api/v1/student/reset?id=${id}token=${token}`,
+      { password },
       { withCredentials: true },
     );
+
+    return response.data;
   } catch (error: any) {
     throw new Error(error.response.data.message || "Failed to reset password");
   }

@@ -13,6 +13,9 @@ import {
   resetPasswordSchema,
 } from "@/lib/schemas/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
+import InvalidLinkView from "./InvalidLinkView";
 
 export default function ResetPasswordPage() {
   const methods = useForm<ResetPasswordFormData>({
@@ -20,10 +23,25 @@ export default function ResetPasswordPage() {
     mode: "onBlur",
   });
 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const token = searchParams.get("token");
+
   const { isPending, resetPwd } = useResetPassword();
+
   const handleEmailSubmit = async (data: any) => {
-    resetPwd(data);
+    if (!id || !token) {
+      toast.error("Missing reset credentials");
+      return;
+    }
+    resetPwd({
+      password: data.password,
+      id,
+      token,
+    });
   };
+
+  if (!id || !token) return <InvalidLinkView />;
 
   return (
     <div className="flex flex-col justify-center min-h-[80vh] px-4">
@@ -79,10 +97,10 @@ export default function ResetPasswordPage() {
                 >
                   {isPending ? (
                     <>
-                      <Loader2 className="animate-spin" /> Reset password ...
+                      <Loader2 className="animate-spin" /> Resetting...
                     </>
                   ) : (
-                    "Reset Password"
+                    "Update Password"
                   )}
                 </Button>
               </motion.div>
