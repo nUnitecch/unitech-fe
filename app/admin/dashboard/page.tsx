@@ -17,7 +17,7 @@ import QuickControlsPanel from "@/components/dashboard/admin/QuickControlsPanel"
 export default function AdminDashboardHome() {
   return (
     <div className="space-y-8 p-4 md:p-10">
-      {/* 1. Header Hero Area */}
+      {/* Header Hero Area */}
       <header className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 bg-logo text-white p-6 rounded-2xl dark:bg-slate-950">
         <div>
           <h1 className="text-2xl font-black tracking-tight sm:text-3xl">
@@ -34,7 +34,7 @@ export default function AdminDashboardHome() {
         </div>
       </header>
 
-      {/* 2. Analytical KPI Status Panel */}
+      {/* Analytical KPI Status Panel */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           title="Total Enrolled Students"
