@@ -35,7 +35,7 @@ export default function AdminSidebar() {
                 className={cn(
                   "relative flex items-center gap-3 px-3 py-3 rounded-xl transition-all group overflow-hidden",
                   isActive
-                    ? "bg-logo/50 font-bold"
+                    ? "bg-white font-bold text-logo"
                     : "text-white hover:text-logo/10",
                 )}
               >
@@ -51,7 +51,7 @@ export default function AdminSidebar() {
                   className={cn(
                     "size-5 transition-colors shrink-0",
                     isActive
-                      ? "text-logo/50"
+                      ? "text-logo"
                       : "text-white group-hover:text-slate-400",
                   )}
                 />

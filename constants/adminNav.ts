@@ -10,7 +10,7 @@ import {
 export const ADMIN_NAV_ITEMS = [
   {
     label: "Overview",
-    href: "/admin",
+    href: "/admin/dashboard",
     icon: LayoutDashboard,
     description: "System analytics & status KPIs",
   },
