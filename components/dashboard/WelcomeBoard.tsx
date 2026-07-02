@@ -2,6 +2,7 @@
 
 import { useStudentData } from "@/contexts/studentContext";
 import React from "react";
+import Link from "next/link";
 
 export default function WelcomeBoard() {
   const { studentData, isLoading } = useStudentData();
@@ -18,7 +19,7 @@ export default function WelcomeBoard() {
       </div>
     );
   }
-  
+
   return (
     <section className="flex flex-col md:flex-row md:items-center justify-between bg-background p-6 text-primary rounded-xl mb-6">
       <div>
@@ -28,9 +29,12 @@ export default function WelcomeBoard() {
         <p className="">Your next class is CSC 203 by 2:00 PM </p>
       </div>
       <div className="flex gap-3.5 text-[14px] mt-3.5">
-        <button className="text-logo bg-logo/10 font-semibold px-4 py-1 rounded-[9px] ">
+        <Link
+          href="dashboard/timetable"
+          className="text-logo bg-logo/10 font-semibold px-4 py-1 rounded-[9px] "
+        >
           View Timetable
-        </button>
+        </Link>
       </div>
     </section>
   );

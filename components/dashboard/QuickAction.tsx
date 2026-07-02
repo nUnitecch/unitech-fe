@@ -8,7 +8,7 @@ const quickActions = [
   {
     icon: FaCalendar,
     name: "Timetable",
-    href: "#timetable",
+    href: "/dashboard/timetable",
     bgColor: "bg-blue-50",
     color: "text-blue-500",
   },
