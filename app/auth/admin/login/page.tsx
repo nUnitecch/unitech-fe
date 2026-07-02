@@ -88,6 +88,17 @@ export default function AdminLoginPage() {
               )}
             </Button>
           </form>
+
+          {/* Back-routing Context */}
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Don't have an admin account?{" "}
+            <Link
+              href="/auth/admin/signup"
+              className="text-logo font-bold hover:underline ml-1"
+            >
+              Sign up here
+            </Link>
+          </p>
         </FormProvider>
       </div>
     </div>

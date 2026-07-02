@@ -6,6 +6,7 @@ import {
   forgetPassword,
   loginAdmin,
   loginStudent,
+  registerAdmin,
   registerStudent,
   resetPassword,
 } from "@/apis/authApi";
@@ -28,6 +29,28 @@ export const useAdminLogin = () => {
   });
 
   return { isPending, adminLogin };
+};
+
+export const useAdminRegistration = () => {
+  const router = useRouter();
+  const { isPending, mutate: registerAdminMutate } = useMutation({
+    mutationFn: registerAdmin,
+    onSuccess: () => {
+      toast.success("Admin account created successfully!");
+      router.push(`/auth/admin/login`);
+    },
+    onError: (error: any) => {
+      let errorMessage = "Registration failed. Try again.";
+      if (error.error) {
+        errorMessage = error.error.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      toast.error(errorMessage);
+    },
+  });
+
+  return { isPending, registerAdminMutate };
 };
 
 export const useStudentRegistration = () => {

@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const adminRegistrationSchema = z.object({
-  firstname: z.string().trim().min(1, "Firstname is required!"),
-  lastname: z.string().trim().min(1, "Lastname is required!"),
-  email: z.email("Invalid email address").trim(),
+  firstname: z.string().trim().min(2, "Firstname is required!"),
+  lastname: z.string().trim().min(2, "Lastname is required!"),
+  email: z.email("Please enter a valid email address").trim(),
   password: z
     .string()
     .trim()
