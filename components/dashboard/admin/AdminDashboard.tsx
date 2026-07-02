@@ -1,3 +1,4 @@
+import MobileAdminNav from "./Navbar";
 import AdminSidebar from "./Sidebar";
 
 export default function AdminDashboard({
@@ -8,6 +9,7 @@ export default function AdminDashboard({
   return (
     <section className="w-full h-screen overflow-hidden bg-background">
       <div className="w-full h-full grid grid-col-1 md:grid-cols-[auto_1fr]">
+        <MobileAdminNav />
         <div className="hidden md:block h-full">
           <AdminSidebar />
         </div>
