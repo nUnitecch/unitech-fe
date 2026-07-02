@@ -13,7 +13,6 @@ export default function MobileAdminNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Prevent background scrolling when navigation panel drawer is active
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -25,14 +24,12 @@ export default function MobileAdminNav() {
     };
   }, [isOpen]);
 
-  // Autoclose navigation panel container when user performs a route action transition
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
   return (
     <div className="md:hidden w-full bg-logo border-b border-border sticky top-0 z-50 px-4 py-4 flex items-center justify-between">
-      {/* Brand Identity Lockup */}
       <div className="flex flex-col gap-2">
         <Logo />
         {/* <span className="text-[9px] text-white font-bold uppercase tracking-wider block -mt-0.5">

@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import Sidebar from "./sidebar/Sidebar";
+// import Sidebar from "./sidebar/Sidebar";
 import DashboardHeader from "./DashboardHeader";
+import Sidebar from "./sidebar/Sidebar-v2";
 
 type DashboardHomeProps = {
   children: React.ReactNode;
