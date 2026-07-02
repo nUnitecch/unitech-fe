@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
           <p className="text-center text-sm text-muted-foreground mt-8">
             Don't have an admin account?{" "}
             <Link
-              href="/auth/admin/signup"
+              href="/admin/auth/signup"
               className="text-logo font-bold hover:underline ml-1"
             >
               Sign up here
