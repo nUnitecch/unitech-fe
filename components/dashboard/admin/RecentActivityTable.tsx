@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 
 export default function RecentActivityTable() {
-  // Hardcoded data mockup mapping exactly to your student state requirements
   const systemStudents = [
     {
       id: "LASU/2026/8931",
@@ -27,8 +26,8 @@ export default function RecentActivityTable() {
   ];
 
   return (
-    <div className="bg-background border border-border rounded-xl shadow-sm overflow-hidden">
-      <div className="p-5 border-b border-border flex justify-between items-center bg-secondary/30">
+    <div className="bg-background border border-border/10 rounded-xl shadow-sm overflow-hidden">
+      <div className="p-5 border-b border-border/10 flex justify-between items-center bg-secondary/30">
         <div>
           <h3 className="font-bold text-base text-foreground">
             Student Management Logs
@@ -45,7 +44,7 @@ export default function RecentActivityTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse text-sm">
           <thead>
-            <tr className="bg-secondary/50 border-b border-border text-xs font-bold uppercase text-muted-foreground">
+            <tr className="bg-secondary/50 border-b border-border/10 text-xs font-bold uppercase text-muted-foreground">
               <th className="p-4">Matric / ID</th>
               <th className="p-4">Student Profile</th>
               <th className="p-4">Level</th>
@@ -53,7 +52,7 @@ export default function RecentActivityTable() {
               <th className="p-4 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody className="divide-y divide-border/10">
             {systemStudents.map((student) => (
               <tr
                 key={student.id}

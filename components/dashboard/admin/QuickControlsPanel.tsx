@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function QuickControlsPanel() {
   return (
-    <div className="bg-background border border-border rounded-xl shadow-sm p-5 space-y-4">
+    <div className="bg-background border border-border/10 rounded-xl shadow-sm p-5 space-y-4">
       <div>
         <h3 className="font-bold text-base text-foreground">
           Operational Triggers

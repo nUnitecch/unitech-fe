@@ -16,19 +16,19 @@ import QuickControlsPanel from "@/components/dashboard/admin/QuickControlsPanel"
 
 export default function AdminDashboardHome() {
   return (
-    <div className="space-y-8 pb-12 px-12">
+    <div className="space-y-8 p-4 md:p-10">
       {/* 1. Header Hero Area */}
-      <header className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 bg-slate-900 text-white p-6 rounded-2xl dark:bg-slate-950">
+      <header className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 bg-logo text-white p-6 rounded-2xl dark:bg-slate-950">
         <div>
           <h1 className="text-2xl font-black tracking-tight sm:text-3xl">
             Administrative Control
           </h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-200 text-sm mt-1">
             Platform operations, system timetables, and entity audits.
           </p>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-logo hover:bg-logo/90 text-white rounded-xl h-11 text-xs font-semibold px-4 cursor-pointer">
+          <Button className="bg-slate-900 hover:bg-logo/90 text-white rounded-xl h-11 text-xs font-semibold px-4 cursor-pointer">
             <UserPlus className="mr-2 size-4" /> Invite New Admin
           </Button>
         </div>

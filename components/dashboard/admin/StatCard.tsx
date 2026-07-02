@@ -19,7 +19,7 @@ export default function StatCard({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="p-5 bg-background border border-border rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
+      className="p-5 bg-background rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
     >
       <div className="flex justify-between items-start mb-4">
         <span className="text-xs uppercase font-bold tracking-wider text-muted-foreground">
