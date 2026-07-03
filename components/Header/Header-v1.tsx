@@ -30,7 +30,7 @@ export default function Header() {
         {/* MOBILE MENU TRIGGER BUTTON */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex flex-col gap-1.5 p-2 md:hidden hover:bg-slate-900 rounded-lg transition-colors border border-transparent active:border-slate-800 focus:outline-none cursor-pointer"
+          className="flex flex-col gap-1.5 p-2 md:hidden rounded-lg transition-colors border border-transparent active:focus:outline-none cursor-pointer"
           aria-label="Toggle Navigation Menu"
         >
           <motion.span
@@ -49,7 +49,7 @@ export default function Header() {
           />
         </button>
 
-        {/* BRAND LOGO IDENTITY - Centered on Mobile Layouts */}
+        {/* BRAND LOGO */}
         <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-2">
           <Logo />
         </div>
