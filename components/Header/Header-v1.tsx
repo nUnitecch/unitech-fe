@@ -22,8 +22,8 @@ export default function Header() {
     <header
       className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 border-b px-4 py-3 ${
         scrolled
-          ? "bg-slate-950/95 backdrop-blur-md border-slate-900 shadow-md shadow-black/20"
-          : "bg-slate-950 border-slate-900/60"
+          ? "bg-logo/80 backdrop-blur-md border-border shadow-md shadow-black/20"
+          : "bg-logo border-border"
       }`}
     >
       <Container className="flex items-center justify-between">
@@ -55,7 +55,7 @@ export default function Header() {
         </div>
 
         {/* DESKTOP NAVIGATION MATRIX */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-white">
           <Link
             href="/dashboard"
             className="hover:text-logo transition-colors py-1"
@@ -85,7 +85,7 @@ export default function Header() {
         {/* PRIMARY CALL TO ACTION BUTTON */}
         <LinkButton
           href="/auth/signin"
-          className="bg-logo hover:bg-logo/90 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-logo/10 active:scale-[0.97]"
+          className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-logo/10 active:scale-[0.97]"
         >
           Sign In
         </LinkButton>
@@ -99,24 +99,24 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="absolute top-full left-0 w-full bg-slate-950 border-b border-slate-900 p-5 flex flex-col gap-3.5 md:hidden shadow-2xl z-40"
+            className={`absolute top-full left-0 w-full ${scrolled ? "bg-logo/80" : "bg-logo"} border-b border-border p-5 flex flex-col gap-3.5 md:hidden shadow-2xl z-40`}
           >
-            <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest px-1">
-              Gateway Navigations
-            </span>
+            {/* <span className="text-[10px] text-white uppercase font-black tracking-widest px-1">
+              Navigations
+            </span> */}
 
             <Link
               href="/dashboard"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-slate-200 hover:text-logo border-b border-slate-900 pb-2.5 px-1"
+              className="text-base font-semibold text-white hover:text-logo border-b border-border pb-2.5 px-1"
             >
-              Student Space
+              Dashboard
             </Link>
 
             <Link
-              href="/admin"
+              href="/admin/dashboard"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-slate-200 hover:text-logo border-b border-slate-900 pb-2.5 px-1 flex items-center justify-between group"
+              className="text-base font-semibold text-white hover:text-logo border-b border-border pb-2.5 px-1 flex items-center justify-between group"
             >
               <span>Administrative Operations</span>
               <ShieldAlert className="size-4 text-logo opacity-60 group-hover:opacity-100" />
@@ -125,17 +125,24 @@ export default function Header() {
             <a
               href="#features"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-slate-400 hover:text-slate-200 border-b border-slate-900 pb-2.5 px-1"
+              className="text-base font-semibold text-white hover:text-logo border-b border-border pb-2.5 px-1"
             >
-              Platform Features
+              Features
             </a>
 
             <a
               href="#about"
               onClick={() => setIsOpen(false)}
-              className="text-base font-semibold text-slate-400 hover:text-slate-200 px-1 pt-0.5"
+              className="text-base font-semibold text-white hover:text-logo border-b border-border pb-2.5 px-1"
             >
-              About Systems
+              About
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setIsOpen(false)}
+              className="text-base font-semibold text-white hover:text-logo pb-2.5 px-1"
+            >
+              FAQ
             </a>
           </motion.div>
         )}
